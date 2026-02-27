@@ -19,14 +19,13 @@ function Player(props) {
 
     function checkWinner() {
         if(Object.keys(props.board).length > 0){
-            // Only notify when this player has ALL their numbers present in the shared board
+            
             for (const number in player) {
-                if (!props.board.hasOwnProperty(number)){
-                    // not yet a winner
+                if (!props.board.hasOwnProperty(number)){                    
                     return
                 }
             }
-            // all numbers present -> report win with player name
+            
             if (typeof props.won === 'function') props.won(props.name)
             return
         }else{

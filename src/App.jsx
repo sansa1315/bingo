@@ -6,11 +6,8 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [boardNumbers, setBoardNumbers] = useState({});
-  // track the winner's name in state so changes trigger renders
+  const [boardNumbers, setBoardNumbers] = useState({});  
   const [winnerName, setWinnerName] = useState(null)
-
-
   const numbers = Array.from({length: 90}, (_, i) => i + 1)
 
   // Pick a random integer index given an array
@@ -39,8 +36,7 @@ function App() {
     }
   }, [winnerName])
 
-  function play() {
-    // console.log("desde play ganador", winnerName)
+  function play() {    
     if(winnerName){
       reset();
     }else{

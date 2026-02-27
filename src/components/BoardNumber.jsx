@@ -2,8 +2,7 @@ import React from 'react'
 
 function BoardNumber(props) {
   const board = props.board || {};
-
-  // Build 9 rows each with 10 numbers (1..90) so numbers go across horizontally
+  
   const rows = Array.from({ length: 9 }, (_, rowIdx) => {
     const start = rowIdx * 10 + 1;
     return Array.from({ length: 10 }, (_, i) => start + i);
