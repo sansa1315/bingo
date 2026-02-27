@@ -19,16 +19,15 @@ function Player(props) {
 
     function checkWinner() {
         if(Object.keys(props.board).length > 0){
+            // Only notify when this player has ALL their numbers present in the shared board
             for (const number in player) {
-                console.log("propiedad dentro del loop", props.board.hasOwnProperty(number))
                 if (!props.board.hasOwnProperty(number)){
-                    console.log("entro a la condicion")
-                    props.won(false)
+                    // not yet a winner
                     return
                 }
             }
-            console.log("salio del loop")
-            props.won(true)
+            // all numbers present -> report win with player name
+            if (typeof props.won === 'function') props.won(props.name)
             return
         }else{
             return false
@@ -42,7 +41,7 @@ function Player(props) {
     checkWinner();
 
     return (
-        <div className='card red'>
+        <div className='card'>
             <h3>{props.name}</h3>
             <div className='d-flex cardBody  '>
                 {
