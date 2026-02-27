@@ -15,6 +15,10 @@
   background-color: white;
   display: flex;
   margin: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .red{

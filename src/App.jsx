@@ -2,42 +2,57 @@ import './App.css';
 import Player from './components/Player';
 
 import BoardNumber from './components/BoardNumber';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function App() {
   const [boardNumbers, setBoardNumbers] = useState({});
-  let ganador = false
+  // track the winner's name in state so changes trigger renders
+  const [winnerName, setWinnerName] = useState(null)
 
 
   const numbers = Array.from({length: 90}, (_, i) => i + 1)
 
-
-  function random() {
-      return Math.floor(Math.random() * numbers.length) + 1
+  // Pick a random integer index given an array
+  function pickRandomFromArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  function winner(win) {
-    ganador = win
+  // Player components will call this with their name when they have completed their board
+  function winner(name) {
+    if (name) setWinnerName(name)
   }
 
   function reset() {
-    setBoardNumbers([])
+    // reset to an empty object (components expect an object)
+    setBoardNumbers({})
     alert("ya gano")
   }
 
+  // When a winner is detected, show an alert and reset the game
+  useEffect(() => {
+    if (winnerName) {
+      alert(`${winnerName} ha ganado!`)
+      setBoardNumbers({})
+      // reset winner after handling
+      setWinnerName(null)
+    }
+  }, [winnerName])
+
   function play() {
-    console.log("desde play ganador", ganador)
-    if(ganador){
+    // console.log("desde play ganador", winnerName)
+    if(winnerName){
       reset();
     }else{
-      let randomNumber = random()
-      let test = {}
-      while(boardNumbers[randomNumber]){
-        randomNumber = random()
+      // Build array of remaining numbers (exclude those already in boardNumbers)
+      const remaining = numbers.filter(n => !boardNumbers[n]);
+      if (remaining.length === 0) {
+        // no more numbers left
+        alert('No quedan más números');
+        return;
       }
-      test[randomNumber] = randomNumber;
-      setBoardNumbers({...boardNumbers, ...test})
+      const randomNumber = pickRandomFromArray(remaining);
+      setBoardNumbers({...boardNumbers, [randomNumber]: randomNumber});
     }
   }
 
@@ -50,7 +65,7 @@ function App() {
       </div>
       <div className='col d-flex justify-content-center'>
         <div className='circle'>
-          <button onClick={() => play()}>Click me</button>
+          <button onClick={() => play()}>Take a number</button>
         </div>
       </div>
       <div className='col text-center'>
