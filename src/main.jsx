@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import generateStore from "./redux/store";
+import generateStore from "./redux/store"
 const store = generateStore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  React.createElement(React.StrictMode, null, React.createElement(App, null))
+  <React.StrictMode>
+      <App />
+  </React.StrictMode>
 );
-
