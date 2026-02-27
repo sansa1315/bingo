@@ -64,8 +64,8 @@ function App() {
         <Player name={"Player"} won={winner}  board={boardNumbers}></Player>
       </div>
       <div className='col d-flex justify-content-center'>
-        <div className='circle'>
-          <button onClick={() => play()}>Take a number</button>
+        <div className='circle '>
+          <button className='btn btn-success' onClick={() => play()}>Take a number</button>
         </div>
       </div>
       <div className='col text-center'>

@@ -10,9 +10,7 @@ function random() {
 }
 
 let count = 0;
-while (count < 15) {
-    // randomNum = random()
-    // obj[randomNum] = randomNum;
+while (count < 15) {    
     dataInicial.player1Number[random()] = 0
     dataInicial.player2Number[random()] = 0
     count++
@@ -22,8 +20,7 @@ while (count < 15) {
 const start = 'start'
 
 // reducer
-function playersNumberReducer(state = dataInicial, action){
-    console.log("action ", action)
+function playersNumberReducer(state = dataInicial, action){    
     let reducer = {
         start: {
             ...state,
@@ -34,8 +31,6 @@ function playersNumberReducer(state = dataInicial, action){
     }
     return reducer[action.type] ? reducer[action.type] : state
 }
-
-
 
 // actions
 export const getRandomNumber = () => async (dispatch, getState) => {
@@ -65,38 +60,6 @@ export const getRandomNumber = () => async (dispatch, getState) => {
         player2Number:{...player2},
 
     })
-}
-
-export const obtenerPokemonsAction = (increment) => async (dispatch, getState) => {
-    console.log("increment ", increment)
-    console.log("pokemones ", getState().pokemones)
-    let offset = getState().pokemones.offset + (increment ? increment : 0)
-    console.log("offset ", offset)
-
-    // try {
-    //     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
-    //     dispatch({
-    //         // type: GET_POKE_SUCCESS,
-    //         array:response.data.results,
-    //         offset: offset
-
-    //     })
-    // } catch (error) {
-    //     console.log(error)
-    // }
-}
-export const obtenerPokemonsActionOffset = () => async (dispatch, getState) => {
-
-    console.log(getState().pokemones.offset)
-    // try {
-    //     const response = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20')
-    //     dispatch({
-    //         type: GET_POKE_SUCCESS,
-    //         payload: response.data.results
-    //     })
-    // } catch (error) {
-    //     console.log(error)
-    // }
 }
 
 const poke = {
