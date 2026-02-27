@@ -3,8 +3,6 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
  
 import generateNUmbers from './generateNumbers'
-
-// console.log(pokeReducer)
  
 const rootReducer = combineReducers({
     randomNumbers: generateNUmbers.playersNumberReducer,
